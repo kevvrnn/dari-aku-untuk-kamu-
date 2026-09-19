@@ -9,36 +9,121 @@
             font-family: 'Arial', sans-serif;
             background-color: #ffe6e6;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .box {
             background: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 20px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: inline-block;
-            max-width: 400px;
+            max-width: 360px;
+            width: 90%;
+            z-index: 10;
+            position: relative;
         }
-        h1 { color: #ff4d6d; }
-        p { color: #4a4a4a; font-size: 18px; line-height: 1.6; }
-        .heart { font-size: 50px; animation: heartbeat 1.2s infinite; }
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            20% { transform: scale(1.1); }
-            40% { transform: scale(1.05); }
-            60% { transform: scale(1.15); }
-            80% { transform: scale(1); }
-            100% { transform: scale(1); }
+        h1 { color: #ff4d6d; font-size: 24px; margin-top: 10px; }
+        p { color: #4a4a4a; font-size: 16px; line-height: 1.6; }
+        .gif-container img {
+            width: 60%;
+            max-width: 150px;
+            border-radius: 10px;
+        }
+        .btn-container {
+            margin-top: 25px;
+            position: relative;
+            height: 50px;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            position: absolute;
+            left: 15%;
+        }
+        #noBtn {
+            background-color: #cccccc;
+            color: #333333;
+            position: absolute;
+            right: 15%;
+        }
+        /* Style untuk efek hati berjatuhan */
+        .heart-fall {
+            position: absolute;
+            color: #ffb3c1;
+            font-size: 20px;
+            animation: fall linear forwards;
+            z-index: 1;
+            user-select: none;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Efek Latar Belakang Hati -->
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-fall');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-5vh';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 300);
+    </script>
+
     <div class="box">
-        <div class="heart">❤️</div>
+        <!-- Kartun GIF Kucing Lucu -->
+        <div class="gif-container">
+            <img src="https://giphy.com" alt="Cute Cat GIF">
+        </div>
+        
         <h1>Halo Sayang!</h1>
-        <p>Aku cuma mau bilang terima kasih ya sudah selalu ada di samping aku. Website ini khusus aku bikin buat kamu sebagai bukti kalau aku selalu mikirin kamu hoho. i love you, baby! </p>
+        <p>Aku cuma mau bilang terima kasih ya sudah selalu ada di samping aku. Website ini khusus aku bikin buat kamu sebagai bukti kalau aku selalu mikirin kamu hoho. i love you, baby! 😘</p>
+        
+        <!-- Tombol Interaktif -->
+        <div class="btn-container">
+            <button id="yesBtn" onclick="alert('Yay! I love you moreee! 🥰❤️')">Love You Too!</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">Enggak</button>
+        </div>
     </div>
+
+    <script>
+        // Fungsi membuat tombol "Enggak" menghindar saat didekati/diklik
+        function moveButton() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+            
+            // Mengubah posisi tombol secara acak di layar
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+    </script>
 
 </body>
 </html>
