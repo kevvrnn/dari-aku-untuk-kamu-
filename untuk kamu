@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>surat cinta untuk kamu ✨</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffe5ec 0%, #ffc2d1 100%);
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 20px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(255, 75, 110, 0.2);
+            max-width: 380px;
+            width: 95%;
+            z-index: 10;
+            transition: all 0.5s ease;
+        }
+        h1 { color: #ff4d6d; font-size: 24px; margin-bottom: 15px; }
+        p { color: #4a4a4a; font-size: 16px; line-height: 1.6; }
+        .gif-box img {
+            width: 140px;
+            height: 140px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            border: 2px solid #ffb3c1;
+            border-radius: 10px;
+            font-size: 16px;
+            text-align: center;
+            outline: none;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn-main { background-color: #ff4d6d; color: white; }
+        .btn-container {
+            margin-top: 25px;
+            position: relative;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        #noBtn {
+            background-color: #cccccc;
+            color: #333333;
+            transition: all 0.1s ease;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+        .shake { animation: shake 0.2s ease 3; }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            z-index: 5;
+            animation: confettiFall 3s linear forwards;
+        }
+        @keyframes confettiFall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- SKRIN 1: TEKA TEKI MISTERIUS -->
+    <div id="screen1" class="container">
+        <div class="gif-box">
+            <img src="https://giphy.com" alt="Cat Puzzle">
+        </div>
+        <h1>Laluan Keselamatan ✨</h1>
+        <p>Sila masukkan <b>NAMA KAMU</b> untuk mengesahkan identiti orang paling lucu di dunia:</p>
+        <input type="text" id="nameInput" placeholder="Type nama kamu di sini...">
+        <br>
+        <button class="btn-main" onclick="checkName()">Buka Surat 🔓</button>
+    </div>
+
+    <!-- SKRIN 2: SURAT UTAMA -->
+    <div id="screen2" class="container hidden">
+        <div class="gif-box">
+            <img src="https://giphy.com" alt="Cute Hug">
+        </div>
+        <h1 id="loveTitle">Hai Manis!</h1>
+        <p>Tengok tu, sistem pun tahu kamu emang orang paling lucu! 😌<br><br>Sebenarnya, aku buat website ni khas untuk kamu. Terima kasih udah selalu ada bersama aku, layanin sifat aku, dan menceriakan hari-hari aku. I love you so much! ❤️</p>
+        
+        <div class="btn-container">
+            <button id="yesBtn" class="btn-main" onclick="celebrate()">Love You Too! ✨</button>
+            <button id="noBtn" onmouseover="dodge()" onclick="deny()">Enggak</button>
+        </div>
+    </div>
+
+    <!-- SKRIN 3: KEJAYAAN MUTLAK -->
+    <div id="screen3" class="container hidden">
+        <div class="gif-box">
+            <img src="https://giphy.com" alt="Happy Dance">
+        </div>
+        <h1>Yayyy! Mission Success! 🎉</h1>
+        <p>Hehe aku tau kamu akan pencet tombol tu! Terima kasih sayang. Sila hantar (screenshot) page ini ke aku sebagai bukti hoho! 🥳💖</p>
+    </div>
+
+    <script>
+        function checkName() {
+            const input = document.getElementById('nameInput').value.trim();
+            const s1 = document.getElementById('screen1');
+            const s2 = document.getElementById('screen2');
+            
+            if(input === "") {
+                s1.classList.add('shake');
+                alert("Eh, masa nama sendiri aja kosong! Isi cepat 😜");
+                setTimeout(() => s1.classList.remove('shake'), 600);
+            } else {
+                document.getElementById('loveTitle').innerHTML = `Hai ${input}! ❤️`;
+                s1.classList.add('hidden');
+                s2.github-code
+                s2.classList.remove('hidden');
+                setInterval(spawnHeart, 400);
+            }
+        }
+
+        function dodge() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        function deny() {
+            const s2 = document.getElementById('screen2');
+            s2.classList.add('shake');
+            alert("Ehh ga boleh klik yang ini! Pilihan ga diterima! 😜");
+            setTimeout(() => s2.classList.remove('shake'), 600);
+            dodge();
+        }
+
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.color = '#ffb3c1';
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '-20px';
+            heart.style.animation = `confettiFall ${Math.random() * 2 + 2}s linear forwards`;
+            heart.style.zIndex = '1';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 4000);
+        }
+
+        function celebrate() {
+            document.getElementById('screen2').classList.add('hidden');
+            document.getElementById('screen3').classList.remove('hidden');
+            for(let i=0; i<80; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                const colors = ['#ff4d6d', '#ff758f', '#ff85a1', '#f72585', '#7209b7', '#fff'];
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = Math.random() * 20 + 'vh';
+                confetti.style.width = Math.random() * 8 + 5 + 'px';
+                confetti.style.height = confetti.style.width;
+                confetti.style.animationDuration = Math.random() * 2 + 1.5 + 's';
+                document.body.appendChild(confetti);
+            }
+        }
+    </script>
+</body>
+</html>
+
